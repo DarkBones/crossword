@@ -47,9 +47,7 @@ class _PuzzleState extends State<Puzzle> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Text(data['across'].map((word) {
-          PuzzleRow(answer: 'answer', clue: 'clue');
-        })),
+        child: Text(data['across'][0].toString()),
       ),
     );
   }
