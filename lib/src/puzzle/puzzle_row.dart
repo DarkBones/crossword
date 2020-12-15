@@ -13,3 +13,15 @@ class PuzzleRow extends StatelessWidget {
     );
   }
 }
+
+class PuzzleRowModel {
+  String answer;
+  String clue;
+
+  PuzzleRowModel({this.answer, this.clue});
+
+  PuzzleRowModel.fromJson(parsedJson) {
+    answer = parsedJson['answer'];
+    clue = parsedJson['clue'];
+  }
+}
