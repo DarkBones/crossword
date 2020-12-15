@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'puzzle_row.dart';
 
 class Puzzle extends StatefulWidget {
   @override
@@ -46,7 +47,9 @@ class _PuzzleState extends State<Puzzle> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Text(data['down']['answer']),
+        child: Text(data['across'].map((word) {
+          PuzzleRow(answer: 'answer', clue: 'clue');
+        })),
       ),
     );
   }
