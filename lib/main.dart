@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'src/puzzle/puzzle.dart';
+import 'src/puzzle.dart';
 
 void main() => runApp(CrosswordApp());
 
