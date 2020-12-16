@@ -4,6 +4,7 @@ class PuzzleModel {
   int downColumn;
   int height;
   int width;
+  List<List<bool>> solved;
 
   PuzzleModel(parsedJson) {
     across = parsedJson['across'];
@@ -11,5 +12,13 @@ class PuzzleModel {
     downColumn = parsedJson['down_column'];
     height = parsedJson['height'];
     width = parsedJson['width'];
+
+    solved = List.generate(
+        height, (i) => List.generate(width, (j) => false, growable: false),
+        growable: false);
+  }
+
+  solve({int row, int col}) {
+    solved[row][col] = true;
   }
 }

@@ -7,13 +7,18 @@ class PuzzleGrid extends StatelessWidget {
   final PuzzleModel puzzle;
   final double hMargin = 25.0;
   final double tMargin = 70.0;
-  final double spacing = 3.0;
+  final double spacing = 5.0;
   final double rowSpacing = 15.0;
 
   PuzzleGrid(this.puzzle);
 
   @override
   Widget build(BuildContext context) {
+    puzzle.solve(row: 0, col: 0);
+    puzzle.solve(row: 0, col: 1);
+    puzzle.solve(row: 0, col: 3);
+    puzzle.solve(row: 1, col: 1);
+
     return SizedBox(
       height: MediaQuery.of(context).size.height - 250,
       child: Padding(
@@ -29,6 +34,7 @@ class PuzzleGrid extends StatelessWidget {
               spacing: spacing,
               cellWidth: calcCellWidth(context),
               downColumn: puzzle.downColumn,
+              solved: puzzle.solved[index],
             );
           },
         ),

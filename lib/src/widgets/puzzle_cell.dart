@@ -5,12 +5,15 @@ class PuzzleCell extends StatelessWidget {
   final double cellWidth;
   final double spacing;
   final bool isOnDownColumn;
+  final bool isSolved;
 
-  PuzzleCell(
-      {@required this.letter,
-      @required this.cellWidth,
-      @required this.spacing,
-      @required this.isOnDownColumn});
+  PuzzleCell({
+    @required this.letter,
+    @required this.cellWidth,
+    @required this.spacing,
+    @required this.isOnDownColumn,
+    @required this.isSolved,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +25,7 @@ class PuzzleCell extends StatelessWidget {
       decoration: getBoxDecoration(),
       child: Center(
         child: Text(
-          letter,
+          getLetter(letter),
           style: getTextStyle(),
         ),
       ),
@@ -31,15 +34,24 @@ class PuzzleCell extends StatelessWidget {
 
   Color getColor() {
     if (isOnDownColumn) {
-      return Colors.red[300];
+      return Colors.blue[200];
     }
-    return Colors.blue[500];
+
+    return Colors.white;
+  }
+
+  String getLetter(letter) {
+    if (isSolved) {
+      return letter;
+    }
+
+    return '_';
   }
 
   TextStyle getTextStyle() {
     return TextStyle(
       fontSize: cellWidth / 2,
-      color: Colors.white,
+      color: Colors.blue[900],
       fontWeight: FontWeight.bold,
     );
   }

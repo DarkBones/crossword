@@ -9,6 +9,7 @@ class PuzzleRow extends StatelessWidget {
   final double spacing;
   final double cellWidth;
   final int downColumn;
+  final List<bool> solved;
 
   PuzzleRow(
       {@required this.row,
@@ -16,20 +17,26 @@ class PuzzleRow extends StatelessWidget {
       @required this.bMargin,
       @required this.spacing,
       @required this.cellWidth,
-      @required this.downColumn});
+      @required this.downColumn,
+      @required this.solved});
 
   @override
   Widget build(BuildContext context) {
-    int index = 0;
+    int column = 0;
     return Container(
       margin: EdgeInsets.only(left: hMargin, right: hMargin, bottom: bMargin),
       child: Row(
         children: row['answer'].split('').map<Widget>((String ch) {
-          return PuzzleCell(
-              letter: ch,
-              cellWidth: cellWidth,
-              spacing: spacing,
-              isOnDownColumn: (index++) == downColumn);
+          PuzzleCell cell = PuzzleCell(
+            letter: ch,
+            cellWidth: cellWidth,
+            spacing: spacing,
+            isOnDownColumn: (column) == downColumn,
+            isSolved: solved[column],
+          );
+
+          column++;
+          return cell;
         }).toList(),
       ),
     );
