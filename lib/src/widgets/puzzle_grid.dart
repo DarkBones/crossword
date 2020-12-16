@@ -5,9 +5,9 @@ import './puzzle_row.dart';
 
 class PuzzleGrid extends StatelessWidget {
   final PuzzleModel puzzle;
-  final double hMargin = 30.0;
+  final double hMargin = 25.0;
   final double tMargin = 70.0;
-  final double spacing = 2.5;
+  final double spacing = 3.0;
   final double rowSpacing = 15.0;
 
   PuzzleGrid(this.puzzle);
@@ -28,6 +28,7 @@ class PuzzleGrid extends StatelessWidget {
               bMargin: rowSpacing,
               spacing: spacing,
               cellWidth: calcCellWidth(context),
+              downColumn: puzzle.downColumn,
             );
           },
         ),
