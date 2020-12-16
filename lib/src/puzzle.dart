@@ -22,9 +22,7 @@ class _PuzzleState extends State<Puzzle> {
         child: Column(
           // mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Center(
-              child: new PuzzleGrid(puzzle),
-            ),
+            new PuzzleGrid(puzzle),
           ],
         ),
       ),
