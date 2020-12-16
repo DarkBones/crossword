@@ -19,20 +19,7 @@ class PuzzleCell extends StatelessWidget {
       height: cellWidth,
       width: cellWidth,
       margin: EdgeInsets.symmetric(horizontal: spacing),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.all(
-          Radius.circular(5.0),
-        ),
-        color: getColor(),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.25),
-            spreadRadius: 1,
-            blurRadius: 7,
-            offset: Offset(3, 3),
-          ),
-        ],
-      ),
+      decoration: getBoxDecoration(),
       child: Center(
         child: Text(
           letter,
@@ -51,5 +38,22 @@ class PuzzleCell extends StatelessWidget {
       return Colors.red[300];
     }
     return Colors.blue[500];
+  }
+
+  BoxDecoration getBoxDecoration() {
+    return BoxDecoration(
+      borderRadius: BorderRadius.all(
+        Radius.circular(5.0),
+      ),
+      color: getColor(),
+      boxShadow: [
+        BoxShadow(
+          color: Colors.black.withOpacity(0.25),
+          spreadRadius: 1,
+          blurRadius: 7,
+          offset: Offset(3, 3),
+        ),
+      ],
+    );
   }
 }
