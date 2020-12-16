@@ -23,11 +23,7 @@ class PuzzleCell extends StatelessWidget {
       child: Center(
         child: Text(
           letter,
-          style: TextStyle(
-            fontSize: cellWidth / 2,
-            color: Colors.white,
-            fontWeight: FontWeight.bold,
-          ),
+          style: getTextStyle(),
         ),
       ),
     );
@@ -38,6 +34,14 @@ class PuzzleCell extends StatelessWidget {
       return Colors.red[300];
     }
     return Colors.blue[500];
+  }
+
+  TextStyle getTextStyle() {
+    return TextStyle(
+      fontSize: cellWidth / 2,
+      color: Colors.white,
+      fontWeight: FontWeight.bold,
+    );
   }
 
   BoxDecoration getBoxDecoration() {
