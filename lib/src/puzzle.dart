@@ -20,8 +20,11 @@ class _PuzzleState extends State<Puzzle> {
     return Scaffold(
       body: Container(
         child: Column(
+          // mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            new PuzzleGrid(buildPuzzleModel()),
+            Center(
+              child: new PuzzleGrid(puzzle),
+            ),
           ],
         ),
       ),
