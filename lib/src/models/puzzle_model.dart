@@ -5,7 +5,7 @@ class PuzzleModel {
   int height;
   int width;
 
-  PuzzleModel.fromJson(parsedJson) {
+  PuzzleModel(parsedJson) {
     across = parsedJson['across'];
     down = parsedJson['down'];
     downColumn = parsedJson['down_column'];
