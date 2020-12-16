@@ -24,6 +24,14 @@ class PuzzleCell extends StatelessWidget {
           Radius.circular(5.0),
         ),
         color: getColor(),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.25),
+            spreadRadius: 1,
+            blurRadius: 7,
+            offset: Offset(3, 3),
+          ),
+        ],
       ),
       child: Center(
         child: Text(
