@@ -20,10 +20,12 @@ class PuzzleCell extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isSolved = Provider.of<Map>(context)['puzzle'].isCellSolved(address);
+    final Map ctx = Provider.of<Map>(context);
+
+    final isSolved = ctx['puzzle'].isCellSolved(address);
     final bool isSelected = ListEquality().equals(
       address,
-      Provider.of<Map>(context)['selectedCell'],
+      ctx['selectedCell'],
     );
 
     final bool isRowSelected = !isSelected &&
@@ -61,17 +63,17 @@ class PuzzleCell extends StatelessWidget {
       }
 
       if (isSelected) {
-        return Colors.yellow[500];
+        return Colors.yellow[600];
       }
       return Colors.blue[200];
     }
 
     if (isRowSelected) {
-      return Colors.red[200];
+      return Colors.yellow[200];
     }
 
     if (isSelected) {
-      return Colors.red[500];
+      return Colors.yellow[500];
     }
     return Colors.white;
   }

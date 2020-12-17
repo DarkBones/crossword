@@ -18,11 +18,15 @@ class PuzzleModel {
         growable: false);
   }
 
-  solve({int row, int col}) {
+  void solve({int row, int col}) {
     solved[row][col] = true;
   }
 
-  isCellSolved(address) {
+  bool isCellSolved(List<int> address) {
     return solved[address[0]][address[1]];
+  }
+
+  String letterAtAddress(List<int> address) {
+    return across[address[0]][address[1]];
   }
 }
