@@ -19,10 +19,11 @@ class PuzzleGrid extends StatelessWidget {
     puzzle.solve(row: 0, col: 3);
     puzzle.solve(row: 1, col: 1);
 
-    return SizedBox(
-      height: MediaQuery.of(context).size.height - 250,
-      child: Padding(
-        padding: EdgeInsets.only(top: tMargin),
+    return Container(
+      color: Colors.blue[900],
+      margin: EdgeInsets.only(top: tMargin),
+      child: SizedBox(
+        height: MediaQuery.of(context).size.height - 250,
         child: ListView.builder(
           padding: EdgeInsets.only(top: rowSpacing),
           itemCount: puzzle.across.length,
