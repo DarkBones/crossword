@@ -19,9 +19,12 @@ class PuzzleGrid extends StatelessWidget {
     puzzle.solve(row: 0, col: 3);
     puzzle.solve(row: 1, col: 1);
 
+    double cellWidth = calcCellWidth(context);
+
     return Container(
       color: Colors.blue[900],
       margin: EdgeInsets.only(top: tMargin),
+      padding: EdgeInsets.only(left: hMargin, right: hMargin),
       child: SizedBox(
         height: MediaQuery.of(context).size.height - 250,
         child: ListView.builder(
@@ -30,10 +33,9 @@ class PuzzleGrid extends StatelessWidget {
           itemBuilder: (context, int index) {
             return new PuzzleRow(
               row: puzzle.across[index],
-              hMargin: hMargin,
               bMargin: rowSpacing,
               spacing: spacing,
-              cellWidth: calcCellWidth(context),
+              cellWidth: cellWidth,
               downColumn: puzzle.downColumn,
               solved: puzzle.solved[index],
             );
