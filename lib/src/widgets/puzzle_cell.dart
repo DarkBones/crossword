@@ -6,6 +6,7 @@ class PuzzleCell extends StatelessWidget {
   final double spacing;
   final bool isOnDownColumn;
   final bool isSolved;
+  final List<int> address;
 
   PuzzleCell({
     @required this.letter,
@@ -13,23 +14,30 @@ class PuzzleCell extends StatelessWidget {
     @required this.spacing,
     @required this.isOnDownColumn,
     @required this.isSolved,
+    @required this.address,
   });
 
   @override
   Widget build(BuildContext context) {
-    print(cellWidth);
-    return Container(
-      height: cellWidth,
-      width: cellWidth,
-      margin: EdgeInsets.symmetric(horizontal: spacing),
-      decoration: getBoxDecoration(),
-      child: Center(
-        child: Text(
-          getLetter(letter),
-          style: getTextStyle(),
+    return GestureDetector(
+      onTap: handleOnTap,
+      child: Container(
+        height: cellWidth,
+        width: cellWidth,
+        margin: EdgeInsets.symmetric(horizontal: spacing),
+        decoration: getBoxDecoration(),
+        child: Center(
+          child: Text(
+            getLetter(letter),
+            style: getTextStyle(),
+          ),
         ),
       ),
     );
+  }
+
+  void handleOnTap() {
+    print('Tap on $address');
   }
 
   Color getColor() {

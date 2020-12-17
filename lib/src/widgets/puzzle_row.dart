@@ -4,6 +4,7 @@ import './puzzle_cell.dart';
 
 class PuzzleRow extends StatelessWidget {
   final Map<String, dynamic> row;
+  final int rowIndex;
   final double bMargin;
   final double spacing;
   final double cellWidth;
@@ -12,6 +13,7 @@ class PuzzleRow extends StatelessWidget {
 
   PuzzleRow(
       {@required this.row,
+      @required this.rowIndex,
       @required this.bMargin,
       @required this.spacing,
       @required this.cellWidth,
@@ -31,6 +33,7 @@ class PuzzleRow extends StatelessWidget {
             spacing: spacing,
             isOnDownColumn: (column) == downColumn,
             isSolved: solved[column],
+            address: [rowIndex, column],
           );
 
           column++;

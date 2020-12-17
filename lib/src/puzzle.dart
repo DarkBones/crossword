@@ -12,6 +12,7 @@ class Puzzle extends StatefulWidget {
 
 class _PuzzleState extends State<Puzzle> {
   PuzzleModel puzzle;
+  List<int> selected;
 
   @override
   Widget build(BuildContext context) {
@@ -33,5 +34,11 @@ class _PuzzleState extends State<Puzzle> {
     String data =
         '{"across": [{"answer": "TENT", "clue": "clue: tent"},{"answer": "EARN", "clue": "clue: earn"},{"answer": "NEST", "clue": "clue: nest"},{"answer": "ARTS", "clue": "clue: arts"},{"answer": "NERD", "clue": "clue: nerd"},{"answer": "TOLL", "clue": "clue: toll"}],"down": {"answer": "TENANT", "clue": "clue: tenant"}, "down_column": 0, "height": 6, "width": 4}';
     return new PuzzleModel(jsonDecode(data));
+  }
+
+  void selectCell(address) {
+    setState(() {
+      selected = address;
+    });
   }
 }

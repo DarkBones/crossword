@@ -33,6 +33,7 @@ class PuzzleGrid extends StatelessWidget {
           itemBuilder: (context, int index) {
             return new PuzzleRow(
               row: puzzle.across[index],
+              rowIndex: index,
               bMargin: rowSpacing,
               spacing: spacing,
               cellWidth: cellWidth,
