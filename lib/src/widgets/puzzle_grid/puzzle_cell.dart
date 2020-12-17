@@ -75,7 +75,7 @@ class PuzzleCell extends StatelessWidget {
       return letter;
     }
 
-    return '_';
+    return '';
   }
 
   TextStyle getTextStyle(isSolved, cellWidth) {
