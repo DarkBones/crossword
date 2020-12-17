@@ -21,4 +21,8 @@ class PuzzleModel {
   solve({int row, int col}) {
     solved[row][col] = true;
   }
+
+  isCellSolved(address) {
+    return solved[address[0]][address[1]];
+  }
 }

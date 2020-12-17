@@ -13,7 +13,7 @@ class Puzzle extends StatefulWidget {
 
 class _PuzzleState extends State<Puzzle> {
   PuzzleModel puzzle;
-  List<int> selected = [0, 0];
+  List<int> selected = [-1, -1];
 
   @override
   Widget build(BuildContext context) {
@@ -23,6 +23,10 @@ class _PuzzleState extends State<Puzzle> {
     puzzle.solve(row: 0, col: 1);
     puzzle.solve(row: 0, col: 3);
     puzzle.solve(row: 1, col: 1);
+
+    if (selected[0] < 0) {
+      selectCell(firstUnsolved());
+    }
 
     // selectNextUnsolved([0, 0]);
     Map ctx = {
@@ -51,6 +55,19 @@ class _PuzzleState extends State<Puzzle> {
     return new PuzzleModel(jsonDecode(data));
   }
 
+  List<int> firstUnsolved() {
+    for (int row = 0; row < puzzle.height; row++) {
+      for (int col = 0; col < puzzle.width; col++) {
+        print([row, col]);
+        if (!puzzle.solved[row][col]) {
+          return [row, col];
+        }
+      }
+    }
+
+    return [-1, -1];
+  }
+
   void selectNextUnsolved(address) {
     bool found = false;
 
@@ -70,7 +87,10 @@ class _PuzzleState extends State<Puzzle> {
   }
 
   void selectCell(address) {
-    print('SELECT $address');
+    if (puzzle.isCellSolved(address)) {
+      return;
+    }
+
     setState(() {
       selected = address;
     });
