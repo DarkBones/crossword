@@ -59,7 +59,6 @@ class _PuzzleState extends State<Puzzle> {
   List<int> firstUnsolved() {
     for (int row = 0; row < puzzle.height; row++) {
       for (int col = 0; col < puzzle.width; col++) {
-        print([row, col]);
         if (!puzzle.solved[row][col]) {
           return [row, col];
         }

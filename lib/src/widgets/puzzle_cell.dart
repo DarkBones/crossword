@@ -6,13 +6,11 @@ import 'package:provider/provider.dart';
 class PuzzleCell extends StatelessWidget {
   final double cellWidth;
   final double spacing;
-  final bool isOnDownColumn;
   final List<int> address;
 
   PuzzleCell({
     @required this.cellWidth,
     @required this.spacing,
-    @required this.isOnDownColumn,
     @required this.address,
   });
 
@@ -30,6 +28,7 @@ class PuzzleCell extends StatelessWidget {
         address[0] == Provider.of<Map>(context)['selectedCell'][0];
 
     final String letter = ctx['puzzle'].letterAtAddress(address);
+    final bool isOnDownColumn = ctx['puzzle'].downColumn == address[1];
 
     return GestureDetector(
       // onTap: () => Provider.of<Map>(context)['selectCell']([0, 0]),
@@ -41,7 +40,7 @@ class PuzzleCell extends StatelessWidget {
         height: cellWidth,
         width: cellWidth,
         margin: EdgeInsets.symmetric(horizontal: spacing),
-        decoration: getBoxDecoration(isSelected, isRowSelected),
+        decoration: getBoxDecoration(isSelected, isRowSelected, isOnDownColumn),
         child: Center(
           child: Text(
             getLetter(letter, isSolved),
@@ -52,11 +51,7 @@ class PuzzleCell extends StatelessWidget {
     );
   }
 
-  void handleOnTap() {
-    print('Tap on $address');
-  }
-
-  Color getColor(isSelected, isRowSelected) {
+  Color getColor(isSelected, isRowSelected, isOnDownColumn) {
     if (isOnDownColumn) {
       if (isRowSelected) {
         return Colors.yellow[300];
@@ -102,12 +97,12 @@ class PuzzleCell extends StatelessWidget {
     return Colors.blue[400];
   }
 
-  BoxDecoration getBoxDecoration(isSelected, isRowSelected) {
+  BoxDecoration getBoxDecoration(isSelected, isRowSelected, isOnDownColumn) {
     return BoxDecoration(
       borderRadius: BorderRadius.all(
         Radius.circular(5.0),
       ),
-      color: getColor(isSelected, isRowSelected),
+      color: getColor(isSelected, isRowSelected, isOnDownColumn),
       boxShadow: [
         BoxShadow(
           color: Colors.black.withOpacity(0.25),

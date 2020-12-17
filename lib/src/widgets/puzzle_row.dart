@@ -32,7 +32,6 @@ class PuzzleRow extends StatelessWidget {
           PuzzleCell cell = PuzzleCell(
             cellWidth: cellWidth,
             spacing: spacing,
-            isOnDownColumn: (column) == downColumn,
             address: [rowIndex, column],
           );
 
