@@ -16,9 +16,10 @@ class PuzzleCell extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Map ctx = Provider.of<Map>(context);
+    final Map ctx = Provider.of<Map>(context, listen: false);
+    final PuzzleModel puzzle = ctx['puzzle'];
 
-    final isSolved = ctx['puzzle'].isCellSolved(address);
+    final isSolved = puzzle.isCellSolved(address);
     final bool isSelected = ListEquality().equals(
       address,
       ctx['selectedCell'],
@@ -27,15 +28,12 @@ class PuzzleCell extends StatelessWidget {
     final bool isRowSelected = !isSelected &&
         address[0] == Provider.of<Map>(context)['selectedCell'][0];
 
-    final String letter = ctx['puzzle'].letterAtAddress(address);
-    final bool isOnDownColumn = ctx['puzzle'].downColumn == address[1];
+    final String letter = puzzle.letterAtAddress(address);
+    final bool isOnDownColumn = puzzle.downColumn == address[1];
 
     return GestureDetector(
       // onTap: () => Provider.of<Map>(context)['selectCell']([0, 0]),
-      onTap: () => Provider.of<Map>(
-        context,
-        listen: false,
-      )['selectCell'](address),
+      onTap: () => ctx['selectCell'](address),
       child: Container(
         height: cellWidth,
         width: cellWidth,
