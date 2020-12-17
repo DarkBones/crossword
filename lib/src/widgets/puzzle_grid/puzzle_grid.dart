@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../models/puzzle_model.dart';
-import './puzzle_row.dart';
+import '../../models/puzzle_model.dart';
+import 'puzzle_row.dart';
 
 class PuzzleGrid extends StatelessWidget {
   final PuzzleModel puzzle;

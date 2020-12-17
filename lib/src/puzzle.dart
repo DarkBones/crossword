@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import './models/puzzle_model.dart';
-import './widgets/puzzle_grid.dart';
+import 'widgets/puzzle_grid/puzzle_grid.dart';
 
 class Puzzle extends StatefulWidget {
   @override

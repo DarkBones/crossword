@@ -2,7 +2,7 @@ import 'package:crossword/src/models/puzzle_model.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import './puzzle_cell.dart';
+import 'puzzle_cell.dart';
 
 class PuzzleRow extends StatelessWidget {
   final int rowIndex;
