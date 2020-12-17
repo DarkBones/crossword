@@ -1,4 +1,5 @@
 import 'package:collection/collection.dart';
+import 'package:crossword/src/models/puzzle_model.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -7,7 +8,6 @@ class PuzzleCell extends StatelessWidget {
   final double cellWidth;
   final double spacing;
   final bool isOnDownColumn;
-  final bool isSolved;
   final List<int> address;
 
   PuzzleCell({
@@ -15,12 +15,12 @@ class PuzzleCell extends StatelessWidget {
     @required this.cellWidth,
     @required this.spacing,
     @required this.isOnDownColumn,
-    @required this.isSolved,
     @required this.address,
   });
 
   @override
   Widget build(BuildContext context) {
+    final isSolved = Provider.of<Map>(context)['puzzle'].isCellSolved(address);
     final bool isSelected = ListEquality().equals(
       address,
       Provider.of<Map>(context)['selectedCell'],
@@ -42,8 +42,8 @@ class PuzzleCell extends StatelessWidget {
         decoration: getBoxDecoration(isSelected, isRowSelected),
         child: Center(
           child: Text(
-            getLetter(letter),
-            style: getTextStyle(),
+            getLetter(letter, isSolved),
+            style: getTextStyle(isSolved),
           ),
         ),
       ),
@@ -76,7 +76,7 @@ class PuzzleCell extends StatelessWidget {
     return Colors.white;
   }
 
-  String getLetter(letter) {
+  String getLetter(letter, isSolved) {
     if (isSolved) {
       return letter;
     }
@@ -84,15 +84,15 @@ class PuzzleCell extends StatelessWidget {
     return '_';
   }
 
-  TextStyle getTextStyle() {
+  TextStyle getTextStyle(isSolved) {
     return TextStyle(
       fontSize: cellWidth / 2,
-      color: getTextColor(),
+      color: getTextColor(isSolved),
       fontWeight: FontWeight.bold,
     );
   }
 
-  Color getTextColor() {
+  Color getTextColor(isSolved) {
     if (isSolved) {
       return Colors.blue[900];
     }

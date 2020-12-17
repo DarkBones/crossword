@@ -1,3 +1,4 @@
+import 'package:crossword/src/models/puzzle_model.dart';
 import 'package:flutter/material.dart';
 
 import './puzzle_cell.dart';
@@ -11,14 +12,15 @@ class PuzzleRow extends StatelessWidget {
   final int downColumn;
   final List<bool> solved;
 
-  PuzzleRow(
-      {@required this.row,
-      @required this.rowIndex,
-      @required this.bMargin,
-      @required this.spacing,
-      @required this.cellWidth,
-      @required this.downColumn,
-      @required this.solved});
+  PuzzleRow({
+    @required this.row,
+    @required this.rowIndex,
+    @required this.bMargin,
+    @required this.spacing,
+    @required this.cellWidth,
+    @required this.downColumn,
+    @required this.solved,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +34,6 @@ class PuzzleRow extends StatelessWidget {
             cellWidth: cellWidth,
             spacing: spacing,
             isOnDownColumn: (column) == downColumn,
-            isSolved: solved[column],
             address: [rowIndex, column],
           );
 

@@ -32,6 +32,7 @@ class _PuzzleState extends State<Puzzle> {
     Map ctx = {
       'selectCell': selectCell,
       'selectedCell': selected,
+      'puzzle': puzzle,
     };
 
     return Provider<Map>.value(
