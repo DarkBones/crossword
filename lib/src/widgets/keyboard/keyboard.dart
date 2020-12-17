@@ -5,7 +5,8 @@ import './keyboard_row.dart';
 class Keyboard extends StatelessWidget {
   final List<String> _rows = ['QWERTYUIOP', 'ASDFGHJKL', 'ZXCVBNM'];
   final Map<String, dynamic> keyboardStyle = {
-    'mx': 15.0,
+    'mx': 0.5,
+    'mt': 10.0,
     'keyHeight': 50.0,
     'keySpacing': 1.0,
   };
@@ -24,6 +25,7 @@ class Keyboard extends StatelessWidget {
         padding: EdgeInsets.only(
           left: keyboardStyle['mx'],
           right: keyboardStyle['mx'],
+          top: keyboardStyle['mt'],
         ),
         child: Column(
           children: _rows.map<Widget>((row) => KeyboardRow(row)).toList(),

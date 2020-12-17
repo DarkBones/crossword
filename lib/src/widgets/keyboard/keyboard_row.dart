@@ -10,6 +10,7 @@ class KeyboardRow extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: rowLetters.split('').map<Widget>((String ch) {
           return KeyboardKey(ch);
         }).toList(),

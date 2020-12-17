@@ -27,10 +27,28 @@ class _KeyboardKeyState extends State<KeyboardKey> {
       height: keyHeight,
       width: keyWidth,
       margin: EdgeInsets.all(keySpacing),
-      decoration: BoxDecoration(border: Border.all()),
+      decoration: _getBoxDecoration(),
       child: Center(
-        child: Text(letter),
+        child: Text(
+          letter,
+          style: _getTextStyle(),
+        ),
       ),
+    );
+  }
+
+  BoxDecoration _getBoxDecoration() {
+    return BoxDecoration(
+      color: Colors.blue[900],
+      borderRadius: BorderRadius.all(
+        Radius.circular(5.0),
+      ),
+    );
+  }
+
+  TextStyle _getTextStyle() {
+    return TextStyle(
+      color: Colors.white,
     );
   }
 }
