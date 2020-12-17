@@ -1,3 +1,4 @@
+import 'package:crossword/src/widgets/keyboard/keyboard_key.dart';
 import 'package:flutter/material.dart';
 
 class KeyboardRow extends StatelessWidget {
@@ -10,7 +11,7 @@ class KeyboardRow extends StatelessWidget {
     return Container(
       child: Row(
         children: rowLetters.split('').map<Widget>((String ch) {
-          return Text(ch);
+          return KeyboardKey(ch);
         }).toList(),
       ),
     );
