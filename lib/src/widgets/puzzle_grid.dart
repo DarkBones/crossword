@@ -1,4 +1,3 @@
-import 'package:crossword/src/puzzle.dart';
 import 'package:flutter/material.dart';
 import '../models/puzzle_model.dart';
 import './puzzle_row.dart';
@@ -14,11 +13,6 @@ class PuzzleGrid extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    puzzle.solve(row: 0, col: 0);
-    puzzle.solve(row: 0, col: 1);
-    puzzle.solve(row: 0, col: 3);
-    puzzle.solve(row: 1, col: 1);
-
     double cellWidth = calcCellWidth(context);
 
     return Container(

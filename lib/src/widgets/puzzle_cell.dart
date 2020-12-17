@@ -1,4 +1,6 @@
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class PuzzleCell extends StatelessWidget {
   final String letter;
@@ -19,13 +21,25 @@ class PuzzleCell extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final bool isSelected = ListEquality().equals(
+      address,
+      Provider.of<Map>(context)['selectedCell'],
+    );
+
+    final bool isRowSelected = !isSelected &&
+        address[0] == Provider.of<Map>(context)['selectedCell'][0];
+
     return GestureDetector(
-      onTap: handleOnTap,
+      // onTap: () => Provider.of<Map>(context)['selectCell']([0, 0]),
+      onTap: () => Provider.of<Map>(
+        context,
+        listen: false,
+      )['selectCell'](address),
       child: Container(
         height: cellWidth,
         width: cellWidth,
         margin: EdgeInsets.symmetric(horizontal: spacing),
-        decoration: getBoxDecoration(),
+        decoration: getBoxDecoration(isSelected, isRowSelected),
         child: Center(
           child: Text(
             getLetter(letter),
@@ -40,11 +54,25 @@ class PuzzleCell extends StatelessWidget {
     print('Tap on $address');
   }
 
-  Color getColor() {
+  Color getColor(isSelected, isRowSelected) {
     if (isOnDownColumn) {
+      if (isRowSelected) {
+        return Colors.yellow[300];
+      }
+
+      if (isSelected) {
+        return Colors.yellow[500];
+      }
       return Colors.blue[200];
     }
 
+    if (isRowSelected) {
+      return Colors.red[200];
+    }
+
+    if (isSelected) {
+      return Colors.red[500];
+    }
     return Colors.white;
   }
 
@@ -72,12 +100,12 @@ class PuzzleCell extends StatelessWidget {
     return Colors.blue[400];
   }
 
-  BoxDecoration getBoxDecoration() {
+  BoxDecoration getBoxDecoration(isSelected, isRowSelected) {
     return BoxDecoration(
       borderRadius: BorderRadius.all(
         Radius.circular(5.0),
       ),
-      color: getColor(),
+      color: getColor(isSelected, isRowSelected),
       boxShadow: [
         BoxShadow(
           color: Colors.black.withOpacity(0.25),

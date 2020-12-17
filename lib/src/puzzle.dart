@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import './models/puzzle_model.dart';
 import './widgets/puzzle_grid.dart';
@@ -12,19 +13,33 @@ class Puzzle extends StatefulWidget {
 
 class _PuzzleState extends State<Puzzle> {
   PuzzleModel puzzle;
-  List<int> selected;
+  List<int> selected = [0, 0];
 
   @override
   Widget build(BuildContext context) {
     puzzle = buildPuzzleModel();
 
-    return Scaffold(
-      body: Container(
-        child: Column(
-          // mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            new PuzzleGrid(puzzle),
-          ],
+    puzzle.solve(row: 0, col: 0);
+    puzzle.solve(row: 0, col: 1);
+    puzzle.solve(row: 0, col: 3);
+    puzzle.solve(row: 1, col: 1);
+
+    // selectNextUnsolved([0, 0]);
+    Map ctx = {
+      'selectCell': selectCell,
+      'selectedCell': selected,
+    };
+
+    return Provider<Map>.value(
+      value: ctx,
+      child: Scaffold(
+        body: Container(
+          child: Column(
+            // mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              new PuzzleGrid(puzzle),
+            ],
+          ),
         ),
       ),
     );
@@ -36,7 +51,26 @@ class _PuzzleState extends State<Puzzle> {
     return new PuzzleModel(jsonDecode(data));
   }
 
+  void selectNextUnsolved(address) {
+    bool found = false;
+
+    for (int row = address[0]; row < puzzle.height; row++) {
+      for (int col = address[1]; col < puzzle.width; col++) {
+        if (!puzzle.solved[row][col]) {
+          found = true;
+          selectCell([row, col]);
+          break;
+        }
+      }
+
+      if (found) {
+        break;
+      }
+    }
+  }
+
   void selectCell(address) {
+    print('SELECT $address');
     setState(() {
       selected = address;
     });
