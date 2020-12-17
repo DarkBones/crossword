@@ -37,18 +37,19 @@ class PuzzleCell extends StatelessWidget {
         height: cellWidth,
         width: cellWidth,
         margin: EdgeInsets.symmetric(horizontal: spacing),
-        decoration: getBoxDecoration(isSelected, isRowSelected, isOnDownColumn),
+        decoration:
+            _getBoxDecoration(isSelected, isRowSelected, isOnDownColumn),
         child: Center(
           child: Text(
-            getLetter(letter, isSolved),
-            style: getTextStyle(isSolved, cellWidth),
+            _getLetter(letter, isSolved),
+            style: _getTextStyle(isSolved, cellWidth),
           ),
         ),
       ),
     );
   }
 
-  Color getColor(isSelected, isRowSelected, isOnDownColumn) {
+  Color _getColor(isSelected, isRowSelected, isOnDownColumn) {
     if (isOnDownColumn) {
       if (isRowSelected) {
         return Colors.yellow[300];
@@ -70,7 +71,7 @@ class PuzzleCell extends StatelessWidget {
     return Colors.white;
   }
 
-  String getLetter(letter, isSolved) {
+  String _getLetter(letter, isSolved) {
     if (isSolved) {
       return letter;
     }
@@ -78,15 +79,15 @@ class PuzzleCell extends StatelessWidget {
     return '';
   }
 
-  TextStyle getTextStyle(isSolved, cellWidth) {
+  TextStyle _getTextStyle(isSolved, cellWidth) {
     return TextStyle(
       fontSize: cellWidth / 2,
-      color: getTextColor(isSolved),
+      color: _getTextColor(isSolved),
       fontWeight: FontWeight.bold,
     );
   }
 
-  Color getTextColor(isSolved) {
+  Color _getTextColor(isSolved) {
     if (isSolved) {
       return Colors.blue[900];
     }
@@ -94,12 +95,12 @@ class PuzzleCell extends StatelessWidget {
     return Colors.blue[400];
   }
 
-  BoxDecoration getBoxDecoration(isSelected, isRowSelected, isOnDownColumn) {
+  BoxDecoration _getBoxDecoration(isSelected, isRowSelected, isOnDownColumn) {
     return BoxDecoration(
       borderRadius: BorderRadius.all(
         Radius.circular(5.0),
       ),
-      color: getColor(isSelected, isRowSelected, isOnDownColumn),
+      color: _getColor(isSelected, isRowSelected, isOnDownColumn),
       boxShadow: [
         BoxShadow(
           color: Colors.black.withOpacity(0.25),
