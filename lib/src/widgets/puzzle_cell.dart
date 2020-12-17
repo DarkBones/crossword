@@ -51,9 +51,17 @@ class PuzzleCell extends StatelessWidget {
   TextStyle getTextStyle() {
     return TextStyle(
       fontSize: cellWidth / 2,
-      color: Colors.blue[900],
+      color: getTextColor(),
       fontWeight: FontWeight.bold,
     );
+  }
+
+  Color getTextColor() {
+    if (isSolved) {
+      return Colors.blue[900];
+    }
+
+    return Colors.blue[400];
   }
 
   BoxDecoration getBoxDecoration() {
