@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import './keyboard_row.dart';
 
 class Keyboard extends StatelessWidget {
   final List<String> rows = ['QWERTYUIOP', 'ASDFGHJKL', 'ZXCVBNM'];
@@ -7,7 +8,7 @@ class Keyboard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       child: Column(
-        children: rows.map<Widget>((row) => Text(row)).toList(),
+        children: rows.map<Widget>((row) => KeyboardRow(row)).toList(),
       ),
     );
   }
