@@ -27,6 +27,6 @@ class PuzzleModel {
   }
 
   String letterAtAddress(List<int> address) {
-    return across[address[0]][address[1]];
+    return across[address[0]]['answer'][address[1]];
   }
 }

@@ -4,14 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class PuzzleCell extends StatelessWidget {
-  final String letter;
   final double cellWidth;
   final double spacing;
   final bool isOnDownColumn;
   final List<int> address;
 
   PuzzleCell({
-    @required this.letter,
     @required this.cellWidth,
     @required this.spacing,
     @required this.isOnDownColumn,
@@ -30,6 +28,8 @@ class PuzzleCell extends StatelessWidget {
 
     final bool isRowSelected = !isSelected &&
         address[0] == Provider.of<Map>(context)['selectedCell'][0];
+
+    final String letter = ctx['puzzle'].letterAtAddress(address);
 
     return GestureDetector(
       // onTap: () => Provider.of<Map>(context)['selectCell']([0, 0]),

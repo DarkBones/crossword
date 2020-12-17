@@ -30,7 +30,6 @@ class PuzzleRow extends StatelessWidget {
       child: Row(
         children: row['answer'].split('').map<Widget>((String ch) {
           PuzzleCell cell = PuzzleCell(
-            letter: ch,
             cellWidth: cellWidth,
             spacing: spacing,
             isOnDownColumn: (column) == downColumn,
