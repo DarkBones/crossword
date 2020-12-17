@@ -108,11 +108,6 @@ class PuzzleCell extends StatelessWidget {
           blurRadius: 7,
           offset: Offset(3, 3),
         ),
-        BoxShadow(
-          blurRadius: 12.0,
-          spreadRadius: -12.0,
-          color: Colors.black,
-        )
       ],
     );
   }

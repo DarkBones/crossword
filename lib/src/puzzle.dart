@@ -51,7 +51,7 @@ class _PuzzleState extends State<Puzzle> {
             // mainAxisAlignment: MainAxisAlignment.center,
             children: [
               new PuzzleGrid(puzzle),
-              new Keyboard(),
+              new Expanded(child: new Keyboard()),
             ],
           ),
         ),

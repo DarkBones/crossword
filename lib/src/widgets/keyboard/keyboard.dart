@@ -22,6 +22,7 @@ class Keyboard extends StatelessWidget {
     return Provider<Map>.value(
       value: keyboardContext,
       child: Container(
+        color: Colors.blue[800],
         padding: EdgeInsets.only(
           left: keyboardStyle['mx'],
           right: keyboardStyle['mx'],
