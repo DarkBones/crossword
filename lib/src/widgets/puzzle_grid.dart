@@ -24,12 +24,9 @@ class PuzzleGrid extends StatelessWidget {
           itemCount: puzzle.across.length,
           itemBuilder: (context, int index) {
             return new PuzzleRow(
-              row: puzzle.across[index],
               rowIndex: index,
               bMargin: rowSpacing,
               spacing: spacing,
-              downColumn: puzzle.downColumn,
-              solved: puzzle.solved[index],
             );
           },
         ),
