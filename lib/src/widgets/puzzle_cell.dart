@@ -4,12 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class PuzzleCell extends StatelessWidget {
-  final double cellWidth;
   final double spacing;
   final List<int> address;
 
   PuzzleCell({
-    @required this.cellWidth,
     @required this.spacing,
     @required this.address,
   });
@@ -18,6 +16,8 @@ class PuzzleCell extends StatelessWidget {
   Widget build(BuildContext context) {
     final Map ctx = Provider.of<Map>(context, listen: false);
     final PuzzleModel puzzle = ctx['puzzle'];
+
+    final double cellWidth = ctx['cellWidth'];
 
     final isSolved = puzzle.isCellSolved(address);
     final bool isSelected = ListEquality().equals(
@@ -32,7 +32,6 @@ class PuzzleCell extends StatelessWidget {
     final bool isOnDownColumn = puzzle.downColumn == address[1];
 
     return GestureDetector(
-      // onTap: () => Provider.of<Map>(context)['selectCell']([0, 0]),
       onTap: () => ctx['selectCell'](address),
       child: Container(
         height: cellWidth,
@@ -42,7 +41,7 @@ class PuzzleCell extends StatelessWidget {
         child: Center(
           child: Text(
             getLetter(letter, isSolved),
-            style: getTextStyle(isSolved),
+            style: getTextStyle(isSolved, cellWidth),
           ),
         ),
       ),
@@ -79,7 +78,7 @@ class PuzzleCell extends StatelessWidget {
     return '_';
   }
 
-  TextStyle getTextStyle(isSolved) {
+  TextStyle getTextStyle(isSolved, cellWidth) {
     return TextStyle(
       fontSize: cellWidth / 2,
       color: getTextColor(isSolved),

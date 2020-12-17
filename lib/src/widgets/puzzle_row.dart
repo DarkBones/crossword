@@ -8,7 +8,6 @@ class PuzzleRow extends StatelessWidget {
   final int rowIndex;
   final double bMargin;
   final double spacing;
-  final double cellWidth;
   final int downColumn;
   final List<bool> solved;
 
@@ -17,7 +16,6 @@ class PuzzleRow extends StatelessWidget {
     @required this.rowIndex,
     @required this.bMargin,
     @required this.spacing,
-    @required this.cellWidth,
     @required this.downColumn,
     @required this.solved,
   });
@@ -30,7 +28,6 @@ class PuzzleRow extends StatelessWidget {
       child: Row(
         children: row['answer'].split('').map<Widget>((String ch) {
           PuzzleCell cell = PuzzleCell(
-            cellWidth: cellWidth,
             spacing: spacing,
             address: [rowIndex, column],
           );

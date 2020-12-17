@@ -13,8 +13,6 @@ class PuzzleGrid extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double cellWidth = calcCellWidth(context);
-
     return Container(
       color: Colors.blue[900],
       margin: EdgeInsets.only(top: tMargin),
@@ -30,7 +28,6 @@ class PuzzleGrid extends StatelessWidget {
               rowIndex: index,
               bMargin: rowSpacing,
               spacing: spacing,
-              cellWidth: cellWidth,
               downColumn: puzzle.downColumn,
               solved: puzzle.solved[index],
             );
@@ -38,16 +35,5 @@ class PuzzleGrid extends StatelessWidget {
         ),
       ),
     );
-  }
-
-  double calcCellWidth(context) {
-    double width = MediaQuery.of(context).size.width;
-    width -= (hMargin * 2);
-
-    width -= puzzle.width * (spacing * 2);
-
-    width /= puzzle.width;
-
-    return width;
   }
 }

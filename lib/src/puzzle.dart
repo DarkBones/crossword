@@ -14,6 +14,12 @@ class Puzzle extends StatefulWidget {
 class _PuzzleState extends State<Puzzle> {
   PuzzleModel puzzle;
   List<int> selected = [-1, -1];
+  final Map<String, dynamic> puzzleStyle = {
+    'mx': 25.0,
+    'mt': 70.0,
+    'cellSpacing': 5.0,
+    'rowSpacing': 15.0
+  };
 
   @override
   Widget build(BuildContext context) {
@@ -30,6 +36,7 @@ class _PuzzleState extends State<Puzzle> {
 
     // selectNextUnsolved([0, 0]);
     Map ctx = {
+      'cellWidth': calcCellWidth(context),
       'selectCell': selectCell,
       'selectedCell': selected,
       'puzzle': puzzle,
@@ -94,5 +101,16 @@ class _PuzzleState extends State<Puzzle> {
     setState(() {
       selected = address;
     });
+  }
+
+  double calcCellWidth(context) {
+    double width = MediaQuery.of(context).size.width;
+    width -= (puzzleStyle['mx'] * 2);
+
+    width -= puzzle.width * (puzzleStyle['cellSpacing'] * 2);
+
+    width /= puzzle.width;
+
+    return width;
   }
 }
