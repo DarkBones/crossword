@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:crossword/src/widgets/keyboard/keyboard.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -50,6 +51,7 @@ class _PuzzleState extends State<Puzzle> {
             // mainAxisAlignment: MainAxisAlignment.center,
             children: [
               new PuzzleGrid(puzzle),
+              new Keyboard(),
             ],
           ),
         ),

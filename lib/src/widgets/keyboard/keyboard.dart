@@ -7,7 +7,7 @@ class Keyboard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       child: Column(
-        children: rows.map<Widget>((row) => Text(row)),
+        children: rows.map<Widget>((row) => Text(row)).toList(),
       ),
     );
   }
