@@ -111,7 +111,10 @@ class _PuzzleState extends State<Puzzle> {
   }
 
   Future _scrollToIndex(index) async {
-    await scrollController.scrollToIndex(index,
-        preferPosition: AutoScrollPosition.begin);
+    await scrollController.scrollToIndex(
+      index,
+      preferPosition: AutoScrollPosition.middle,
+      duration: Duration(milliseconds: 800),
+    );
   }
 }
