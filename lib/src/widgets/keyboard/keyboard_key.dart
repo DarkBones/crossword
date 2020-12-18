@@ -19,7 +19,6 @@ class _KeyboardKeyState extends State<KeyboardKey> {
   Widget build(BuildContext context) {
     final Map keyboardContext = Provider.of<Map>(context);
     final double keyWidth = keyboardContext['keyWidth'];
-    print(keyWidth);
     final double keySpacing = keyboardContext['keySpacing'];
     final double keyHeight = keyboardContext['keyHeight'];
 
