@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:crossword/src/widgets/keyboard/keyboard.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:scroll_to_index/scroll_to_index.dart';
 
 import './models/puzzle_model.dart';
 import 'widgets/puzzle_grid/puzzle_grid.dart';
@@ -21,6 +22,23 @@ class _PuzzleState extends State<Puzzle> {
     'cellSpacing': 5.0,
     'rowSpacing': 15.0
   };
+
+  final scrollDirection = Axis.vertical;
+
+  AutoScrollController scrollController;
+
+  @override
+  void initState() {
+    super.initState();
+    scrollController = AutoScrollController(
+        viewportBoundaryGetter: () => Rect.fromLTRB(
+              0,
+              0,
+              0,
+              MediaQuery.of(context).padding.bottom,
+            ),
+        axis: scrollDirection);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -50,7 +68,7 @@ class _PuzzleState extends State<Puzzle> {
           child: Column(
             // mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              new PuzzleGrid(puzzle),
+              new PuzzleGrid(puzzle, scrollController),
               new Expanded(child: new Keyboard()),
             ],
           ),
@@ -77,6 +95,8 @@ class _PuzzleState extends State<Puzzle> {
     setState(() {
       selected = address;
     });
+
+    _scrollToIndex(address[0]);
   }
 
   double calcCellWidth(context) {
@@ -88,5 +108,10 @@ class _PuzzleState extends State<Puzzle> {
     width /= puzzle.width;
 
     return width;
+  }
+
+  Future _scrollToIndex(index) async {
+    await scrollController.scrollToIndex(index,
+        preferPosition: AutoScrollPosition.begin);
   }
 }
