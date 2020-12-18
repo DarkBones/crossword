@@ -17,6 +17,7 @@ class Keyboard extends StatelessWidget {
       'keySpacing': keyboardStyle['keySpacing'],
       'keyWidth': calcKeyWidth(context),
       'keyHeight': keyboardStyle['keyHeight'],
+      'selectNextCell': Provider.of<Map>(context)['selectNextCell'],
     };
 
     return Provider<Map>.value(

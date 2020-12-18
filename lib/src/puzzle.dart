@@ -26,20 +26,20 @@ class _PuzzleState extends State<Puzzle> {
   Widget build(BuildContext context) {
     puzzle = buildPuzzleModel();
 
-    puzzle.solve(row: 0, col: 0);
-    puzzle.solve(row: 0, col: 1);
-    puzzle.solve(row: 0, col: 3);
-    puzzle.solve(row: 1, col: 1);
+    puzzle.solve([0, 0]);
+    puzzle.solve([0, 1]);
+    puzzle.solve([0, 3]);
+    puzzle.solve([1, 1]);
 
     if (selected[0] < 0) {
-      selectCell(firstUnsolved());
+      selectCell(puzzle.firstUnsolved());
     }
 
-    // selectNextUnsolved([0, 0]);
     Map ctx = {
       'cellWidth': calcCellWidth(context),
       'selectCell': selectCell,
       'selectedCell': selected,
+      'selectNextCell': selectNextCell,
       'puzzle': puzzle,
     };
 
@@ -65,34 +65,8 @@ class _PuzzleState extends State<Puzzle> {
     return new PuzzleModel(jsonDecode(data));
   }
 
-  List<int> firstUnsolved() {
-    for (int row = 0; row < puzzle.height; row++) {
-      for (int col = 0; col < puzzle.width; col++) {
-        if (!puzzle.solved[row][col]) {
-          return [row, col];
-        }
-      }
-    }
-
-    return [-1, -1];
-  }
-
-  void selectNextUnsolved(address) {
-    bool found = false;
-
-    for (int row = address[0]; row < puzzle.height; row++) {
-      for (int col = address[1]; col < puzzle.width; col++) {
-        if (!puzzle.solved[row][col]) {
-          found = true;
-          selectCell([row, col]);
-          break;
-        }
-      }
-
-      if (found) {
-        break;
-      }
-    }
+  void selectNextCell() {
+    selectCell(puzzle.nextUnsolved(selected));
   }
 
   void selectCell(address) {

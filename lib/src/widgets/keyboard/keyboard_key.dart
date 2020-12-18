@@ -25,7 +25,10 @@ class _KeyboardKeyState extends State<KeyboardKey> {
 
     return GestureDetector(
       onTapDown: _handleOnTapDown,
-      onTapUp: _handleOnTapUp,
+      onTapUp: (TapUpDetails e) {
+        _handleOnTapUp();
+        Provider.of<Map>(context, listen: false)['selectNextCell']();
+      },
       onTapCancel: _handleOnTapCancel,
       child: Container(
         height: keyHeight,
@@ -56,7 +59,7 @@ class _KeyboardKeyState extends State<KeyboardKey> {
     });
   }
 
-  void _handleOnTapUp(TapUpDetails e) {
+  void _handleOnTapUp() {
     setState(() {
       isPressed = false;
     });
