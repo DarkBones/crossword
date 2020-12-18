@@ -61,7 +61,7 @@ class _PuzzleState extends State<Puzzle> {
 
   PuzzleModel buildPuzzleModel() {
     String data =
-        '{"across": [{"answer": "TENT", "clue": "clue: tent"},{"answer": "EARN", "clue": "clue: earn"},{"answer": "NEST", "clue": "clue: nest"},{"answer": "ARTS", "clue": "clue: arts"},{"answer": "NERD", "clue": "clue: nerd"},{"answer": "TOLL", "clue": "clue: toll"}],"down": {"answer": "TENANT", "clue": "clue: tenant"}, "down_column": 0, "height": 6, "width": 4}';
+        '{"across": [{"answer": "TENT", "clue": "clue: tent"},{"answer": "EARN", "clue": "clue: earn"},{"answer": "NEST", "clue": "clue: nest"},{"answer": "ARTS", "clue": "clue: arts"},{"answer": "NERD", "clue": "clue: nerd"},{"answer": "TOLL", "clue": "clue: toll"},{"answer": "SUIT", "clue": "clue: suit"}],"down": {"answer": "TENANTS", "clue": "clue: tenant"}, "down_column": 0, "height": 7, "width": 4}';
     return new PuzzleModel(jsonDecode(data));
   }
 
